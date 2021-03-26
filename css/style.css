@@ -1,0 +1,57 @@
+body {
+    background-image: url(/assets/red-rocks.jpg);
+    background-size: cover;
+}
+
+.title-bar {
+    text-align: center;
+    border: solid black 3px;
+    height: 90px;
+    width: 100%;
+    font-size: 45px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-field {
+    margin: 10px;
+}
+
+#search {
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* change font to black so it can be seen */
+.placeholder {
+    font: black;
+}
+
+#fetch-button {
+    background-color: rgb(250, 117, 8);
+    border-radius: 30px;
+}
+
+.top-songs {
+    border: solid black 3px;
+    border-radius: 30px;
+    margin-right: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.lyrics-section {
+    border: solid black 3px;
+    border-radius: 30px;
+    margin-right: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.concert-dates {
+    border: solid black 3px;
+    border-radius: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.video-section {
+    border: dotted black 1px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
