@@ -7,46 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Artist Info</title>
 </head>
 
 <body>
-    <header>hello</header>
-    <nav>
-        <div class="nav-wrapper">
-            <form>
-                <div class="input-field">
-                    <input id="search" type="search" required>
-                    <label class="label-icon" for="search"></label>><i class="material-icons"></i></label>
-                    <button class="btn btn-info btn-block" id="fetch-button">Search</button>
-                    <i class="material-icons">close</i>
+    <header class="col 12 ffab91 deep-orange lighten-3 title-bar">Welcome to the music page!</header>
+
+    <div class="input-field">
+        <input id="search" type="text" placeholder="Type in an artist's name here!">
+        <button id="fetch-button">Search</button>
+    </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col s3  #e1bee7 purple lighten-4 top-songs css">top songs:
+            <div id="songs">
+
+            </div>
+        </div>
+
+        <div class="col s3 #e1bee7 purple lighten-4 lyrics-section">lyrics:
+            <div id="lyrics">
+
+            </div>
+        </div>
+
+        <div class="col s4 #e1bee7 purple lighten-4 concert-dates">concert dates:
+            <div id="concert">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- add scrolling left and right arrows -->
+    <footer>
+        <div class="row">
+            <div class="col s12 video-section">music videos:
+                <div id="video">
+
                 </div>
-            </form>
+            </div>
         </div>
-    </nav>
 
-    <div class="lyrics-section">
-        <div id= "lyrics">
+    </footer>
 
-        </div>
-    </div>
 
-    <div class="video-section">
-        <div id="video">
-
-        </div>
-    </div>
-
-    <div class="concert-dates">
-        <div id="concert">
-
-        </div>
     </div>
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <script src="js/script.js"></script>
 </body>
 
