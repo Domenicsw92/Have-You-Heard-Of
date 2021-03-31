@@ -2,7 +2,7 @@
 var searchInput = document.getElementById("search")
 var searchButton = document.getElementById("fetch-button")
 var youTubeApiKey = "AIzaSyA_aUBZ0ohp4ghjhhCm5VzI4Y2lVpAdAq0"
-var test = 'stuff'
+
 
 function getEvents(search) {
   var query = "https://app.ticketmaster.com/discovery/v2/events.json?size=5&keyword=" + search + "&countryCode=US&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0"
