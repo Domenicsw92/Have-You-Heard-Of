@@ -2,7 +2,64 @@
 var searchInput = document.getElementById("search")
 var searchButton = document.getElementById("fetch-button")
 var youTubeApiKey = "AIzaSyA_aUBZ0ohp4ghjhhCm5VzI4Y2lVpAdAq0"
+
 var musixMatchAPIKey = "bd6f120abfaa3580f25b07958b74ed5c"
+
+var videoLink1 = document.getElementById('vid1')
+var videoLink2 = document.getElementById('vid2')
+var videoLink3 = document.getElementById('vid3')
+var videoLink4 = document.getElementById('vid4')
+var videoLink5 = document.getElementById('vid5')
+
+//// Artist Top tracks Code
+function getArtist(search){
+const settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": `https://shazam.p.rapidapi.com/search?term=${search}&locale=en-US&offset=0&limit=5`,
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "29def31d69msh1d699050c78c186p1bcc27jsn0c44e1e0914e",
+		"x-rapidapi-host": "shazam.p.rapidapi.com"
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	console.log("hello",response);
+
+  var artistcardBody = $("<div>").addClass("eventBody")
+  var artistcardText = $("<h4>").text(response.artists.hits[0].artist.name).addClass("Artist-Title")
+  var topTracks = $("<h5>").text("Top 5 Tracks").addClass("event-Date")
+  var artistcardTrack = $("<p>").text("1: "+response.tracks.hits[0].track.title).addClass("Artist-track")
+  var artistcardMusic = $("<a></a>").attr("href",response.tracks.hits[0].track.hub.actions[1].uri ).text("hear it now",)
+
+  var artistcard2Track = $("<p>").text("2: "+response.tracks.hits[1].track.title).addClass("Artist-track")
+  var artistcard2Music = $("<a></a>").attr("href",response.tracks.hits[1].track.hub.actions[1].uri ).text("hear it now",)
+
+  var artistcard3Track = $("<p>").text("3: "+response.tracks.hits[2].track.title).addClass("Artist-track")
+  var artistcard3Music = $("<a></a>").attr("href",response.tracks.hits[2].track.hub.actions[1].uri ).text("hear it now",)
+
+  var artistcard4Track = $("<p>").text("4: "+response.tracks.hits[3].track.title).addClass("Artist-track")
+  var artistcard4Music = $("<a></a>").attr("href",response.tracks.hits[3].track.hub.actions[1].uri ).text("hear it now",)
+
+  var artistcard5Track = $("<p>").text("5: "+response.tracks.hits[4].track.title).addClass("Artist-track")
+  var artistcard5Music = $("<a></a>").attr("href",response.tracks.hits[4].track.hub.actions[1].uri ).text("hear it now",)
+  
+  
+  artistcardText.append(topTracks, artistcardTrack,artistcardMusic, artistcard2Track,artistcard2Music, artistcard3Track,artistcard3Music, artistcard4Track,artistcard4Music ,artistcard5Track,artistcard5Music)
+  artistcardBody.append(artistcardText)
+
+
+  $(".artist").append(artistcardBody)
+
+
+
+
+});
+}
+
+
+
 
 
 function getEvents(search) {
@@ -16,13 +73,13 @@ function getEvents(search) {
     dataType: "json",
     success: function ({ _embedded }) {
       // getEvents.json = json;
-      console.log(_embedded);
+     // console.log(_embedded);
       //append here//
       var { events } = _embedded
-      console.log("these are the events", events[0])
+     // console.log("these are the events", events[0])
       for (i = 0; i < events.length; i++) {
         events[i];
-        console.log(events[i].name)
+        //console.log(events[i].name)
 
         var cardBody = $("<div>").addClass("eventBody")
         var cardText = $("<h4>").text(events[i].name).addClass("event-Date")
@@ -31,16 +88,12 @@ function getEvents(search) {
        // var eventLink = events[i].url
         var eventBtn = $("<a></a>").attr("href", events[i].url).text("Get Tickets",)
         //.click(function () {  $(`[href="${eventLink}"]`).click()  } ).text("Get Tickets",).addClass("event-Date")
-
       
         cardText.append(eventDate, eventBtn)
         cardBody.append(cardText)
 
-
         $(".events").append(cardBody)
-
       }
-
     },
 
     error: function (xhr, status, err) {
@@ -49,7 +102,6 @@ function getEvents(search) {
     }
   })
   // .then(function (events) {
-
 }
 
 function loadClient() {
@@ -70,6 +122,11 @@ function execute() {
               // Handle the results here (response.result has the parsed body).
               
               console.log("Response", response);
+              videoLink1.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[0].id.videoId}`);
+              videoLink2.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[1].id.videoId}`);
+              videoLink3.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[2].id.videoId}`);
+              videoLink4.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[3].id.videoId}`);
+              videoLink5.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[4].id.videoId}`);
             },
             function(err) { console.error("Execute error", err); });
 }
@@ -100,6 +157,20 @@ searchButton.addEventListener("click", function (event) {
   var newSearch = searchInput.value
   console.log(newSearch)
   getEvents(newSearch)
+
   getLyrics(newSearch)
+
+  getArtist(newSearch)
+
   execute();
+
+
+
 })
+
+
+
+
+
+
+
