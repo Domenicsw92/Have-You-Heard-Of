@@ -2,6 +2,9 @@
 var searchInput = document.getElementById("search")
 var searchButton = document.getElementById("fetch-button")
 var youTubeApiKey = "AIzaSyA_aUBZ0ohp4ghjhhCm5VzI4Y2lVpAdAq0"
+
+var musixMatchAPIKey = "bd6f120abfaa3580f25b07958b74ed5c"
+
 var videoLink1 = document.getElementById('vid1')
 var videoLink2 = document.getElementById('vid2')
 var videoLink3 = document.getElementById('vid3')
@@ -54,6 +57,7 @@ $.ajax(settings).done(function (response) {
 
 });
 }
+
 
 
 
@@ -132,12 +136,32 @@ gapi.load("client:auth2", function() {
 .then(loadClient);
 });
 
+function getLyrics(searchInput) {
+
+  $.ajax({
+    type: "GET",
+    url: "https://api.musixmatch.com/ws/1.1/artist.search?q_artist="+searchInput+"&apikey="+musixMatchAPIKey,
+    headers: {"Access-Control-Allow-Origin":"*"},
+    dataType: 'jsonp',
+    success: function (data) {
+      console.log(data);
+    },
+  //   error: function(xhr, status, err) {
+  //     console.log(err);
+  //     }  
+  });
+};
+
 searchButton.addEventListener("click", function (event) {
   event.preventDefault()
   var newSearch = searchInput.value
   console.log(newSearch)
   getEvents(newSearch)
+
+  getLyrics(newSearch)
+
   getArtist(newSearch)
+
   execute();
 
 
