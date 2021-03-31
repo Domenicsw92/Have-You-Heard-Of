@@ -2,7 +2,11 @@
 var searchInput = document.getElementById("search")
 var searchButton = document.getElementById("fetch-button")
 var youTubeApiKey = "AIzaSyA_aUBZ0ohp4ghjhhCm5VzI4Y2lVpAdAq0"
-
+var videoLink1 = document.getElementById('vid1')
+var videoLink2 = document.getElementById('vid2')
+var videoLink3 = document.getElementById('vid3')
+var videoLink4 = document.getElementById('vid4')
+var videoLink5 = document.getElementById('vid5')
 
 //// Artist Top tracks Code
 function getArtist(search){
@@ -80,16 +84,12 @@ function getEvents(search) {
        // var eventLink = events[i].url
         var eventBtn = $("<a></a>").attr("href", events[i].url).text("Get Tickets",)
         //.click(function () {  $(`[href="${eventLink}"]`).click()  } ).text("Get Tickets",).addClass("event-Date")
-
       
         cardText.append(eventDate, eventBtn)
         cardBody.append(cardText)
 
-
         $(".events").append(cardBody)
-
       }
-
     },
 
     error: function (xhr, status, err) {
@@ -98,7 +98,6 @@ function getEvents(search) {
     }
   })
   // .then(function (events) {
-
 }
 
 function loadClient() {
@@ -119,6 +118,11 @@ function execute() {
               // Handle the results here (response.result has the parsed body).
               
               console.log("Response", response);
+              videoLink1.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[0].id.videoId}`);
+              videoLink2.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[1].id.videoId}`);
+              videoLink3.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[2].id.videoId}`);
+              videoLink4.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[3].id.videoId}`);
+              videoLink5.setAttribute('src', `https://www.youtube.com/embed/${response.result.items[4].id.videoId}`);
             },
             function(err) { console.error("Execute error", err); });
 }
@@ -137,7 +141,12 @@ searchButton.addEventListener("click", function (event) {
   execute();
 
 
+
 })
+
+
+
+
 
 
 
