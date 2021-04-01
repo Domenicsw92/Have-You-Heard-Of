@@ -5,6 +5,9 @@ var youTubeApiKey = "AIzaSyA_aUBZ0ohp4ghjhhCm5VzI4Y2lVpAdAq0"
 
 var musixMatchAPIKey = "bd6f120abfaa3580f25b07958b74ed5c"
 
+var pastSearches = []
+var pastEvents = []
+
 var videoLink1 = document.getElementById('vid1')
 var videoLink2 = document.getElementById('vid2')
 var videoLink3 = document.getElementById('vid3')
@@ -26,6 +29,7 @@ const settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log("hello",response);
+  saveDataFields(response) 
 
   var artistcardBody = $("<div>").addClass("eventBody")
   var artistcardText = $("<h4>").text(response.artists.hits[0].artist.name).addClass("Artist-Title")
@@ -75,7 +79,9 @@ function getEvents(search) {
       // getEvents.json = json;
      // console.log(_embedded);
       //append here//
+    
       var { events } = _embedded
+      saveEventsFields(events)
      // console.log("these are the events", events[0])
       for (i = 0; i < events.length; i++) {
         events[i];
@@ -152,6 +158,64 @@ function getLyrics(searchInput) {
   });
 };
 
+function clearData(){
+  $( ".artist" ).empty();
+  $( ".events" ).empty();
+
+}
+
+function saveDataFields(response){
+  console.log ("here", response)
+  var saveArtist = response.artists.hits[0].artist.name
+  var saveTracks = []
+  for (i = 0; i < response.tracks.hits.length; i++) {
+    var hitTitles = response.tracks.hits[i].track.title
+    saveTracks.push(hitTitles)
+    
+  }
+  //console.log("savehere", events)
+  
+ // localStorage.setItem("Artist:",saveArtist)
+ // localStorage.setItem("Top Tracks:", saveTracks)
+
+  var dataToStore = { "artist":saveArtist, 
+  "Top Tracks": saveTracks,
+}
+
+pastSearches.push(dataToStore)
+
+localStorage.setItem("Past Searches",JSON.stringify(pastSearches) );
+}
+
+
+function saveEventsFields(events){
+  
+  console.log("savehere", events)
+  var saveEvents = []
+  for (i = 0; i < events.length; i++) {
+    var eventTitle= ( events[i].name ) ;
+    saveEvents.push(eventTitle)
+  }
+  var savedDates = []
+  for (i = 0; i < events.length; i++) {
+    var eventDate = (events[i].dates.initialStartDate.localDate ) 
+    savedDates.push(eventDate)
+  }
+  var eventData = {"Events": saveEvents,
+  "Event Dates":savedDates
+  }
+
+  pastEvents.push(eventData)
+  
+  localStorage.setItem("Past Search Events", JSON.stringify(pastEvents))
+
+}
+
+//pastSearches.push(dataToStore)
+
+//localStorage.setItem("Past Searches",JSON.stringify(pastSearches) );
+
+
 searchButton.addEventListener("click", function (event) {
   event.preventDefault()
   var newSearch = searchInput.value
@@ -161,6 +225,8 @@ searchButton.addEventListener("click", function (event) {
   getLyrics(newSearch)
 
   getArtist(newSearch)
+
+  clearData();
 
   execute();
 
