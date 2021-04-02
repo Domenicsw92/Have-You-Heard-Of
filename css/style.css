@@ -16,7 +16,6 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-
 .input-field {
     margin: 10px;
     
@@ -42,12 +41,7 @@ body {
 }
 
 .content {
-    vertical-align: center !important;
-}
-
-.row {
-    margin-left: 100px;
-    max-width: 2000px;
+margin-left: 100px;
 }
 
 .top-songs {
