@@ -14,16 +14,18 @@ body {
 
 .input-field {
     margin: 10px;
+    
 }
 
 #search {
     font-size: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
 }
 
 /* change font to black so it can be seen */
-.placeholder {
-    font: black;
+::placeholder {
+    color: black;
 }
 
 #fetch-button {
@@ -55,3 +57,5 @@ body {
     border: dotted black 1px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+  
