@@ -148,7 +148,7 @@ function getLyrics(searchInput) {
 
   $.ajax({
     type: "GET",
-    url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=jsonp&callback=callback&track_id="+searchInput+"&apikey=a0f0211d8f59c47b524f3dbf79fec662",
+    url: "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_artist="+searchInput+"&apikey="+musixMatchAPIKey,
     headers: {"Access-Control-Allow-Origin":"*"},
     dataType: 'jsonp',
     success: function (data) {
