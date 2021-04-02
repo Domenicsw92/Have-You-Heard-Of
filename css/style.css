@@ -25,7 +25,10 @@ body {
 #search {
     font-size: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
     
+    
+
 }
 
 /* change font to black so it can be seen */
@@ -80,6 +83,18 @@ body {
 }
 
 
+.eventTicket{
+    background-image: url("../assets/ticket.jpg");
+    background-size: cover;
+    text-decoration: underline;
+    color: rgb(250, 117, 8)}
+
+.hearItNow{
+    text-decoration: underline;
+    color: rgb(250, 117, 8)
+}
+
+
   
 
 @media screen and (max-width: 1420px) {
@@ -88,3 +103,4 @@ body {
 
 @media screen and (max-width: 735px) {
     .top-songs, .lyrics-section, .concert-dates, .video-section {width: 100%;}} 
+
