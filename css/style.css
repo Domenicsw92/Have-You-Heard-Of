@@ -1,5 +1,9 @@
 body {
+
+    background-image: url(../assets/red-rocks.jpg);
+
     background-image: url("../assets/red-rocks.jpg");
+
     background-size: cover;
 }
 
