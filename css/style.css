@@ -32,6 +32,9 @@ body {
 
 /* change font to black so it can be seen */
 ::placeholder {
+
+    font: black;
+
     color: black;
 }
 
