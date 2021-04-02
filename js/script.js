@@ -53,11 +53,10 @@ $.ajax(settings).done(function (response) {
   artistcardText.append(topTracks, artistcardTrack,artistcardMusic, artistcard2Track,artistcard2Music, artistcard3Track,artistcard3Music, artistcard4Track,artistcard4Music ,artistcard5Track,artistcard5Music)
   artistcardBody.append(artistcardText)
 
-
+  
   $(".artist").append(artistcardBody)
 
-
-
+  $('.hearItNow').prepend('<img id="play" class="playBtn" src="../assets/play-button_25b6-fe0f.png" />')
 
 });
 }
@@ -88,14 +87,14 @@ function getEvents(search) {
        // console.log(events[i].name)
 
         var cardBody = $("<div>").addClass("eventBody")
-        var cardText = $("<h4>").text(events[i].name).addClass("event-Date")
+        var cardText = $("<h5>").text(events[i].name).addClass("event-Name")
         var eventDate = $("<p>").text(moment(events[i].dates.start.localDate).format("MMM D, YYYY")).addClass("event-Date")
-        //var eventPlace = $("<p>").text(events[i]._embedded.venues.city.name).addClass("event-Date")
+        var eventPlace = $("<p>").text(events[i]._embedded.venues[0].city.name).addClass("event-Place")
         // var eventLink = events[i].url
         var eventBtn = $("<a></a>").attr("href", events[i].url).text("Get Tickets",).addClass("eventTicket")
         //.click(function () {  $(`[href="${eventLink}"]`).click()  } ).text("Get Tickets",).addClass("event-Date")
 
-        cardText.append(eventDate, eventBtn)
+        cardText.append(eventDate, eventPlace, eventBtn)
         cardBody.append(cardText)
 
         $(".events").append(cardBody)
@@ -151,12 +150,9 @@ function getLyrics(searchInput) {
     url: "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_artist="+searchInput+"&apikey="+musixMatchAPIKey,
     headers: {"Access-Control-Allow-Origin":"*"},
     dataType: 'jsonp',
-    success: function (data) {
-      console.log("lyrics",data);
+    success: function (lyricData) {
+      console.log("lyrics",lyricData);
     },
-  //   error: function(xhr, status, err) {
-  //     console.log(err);
-  //     }  
   });
 };
 
@@ -175,10 +171,6 @@ function saveDataFields(response){
     saveTracks.push(hitTitles)
     
   }
-  //console.log("savehere", events)
-  
- // localStorage.setItem("Artist:",saveArtist)
- // localStorage.setItem("Top Tracks:", saveTracks)
 
   var dataToStore = { "artist":saveArtist, 
   "Top Tracks": saveTracks,
@@ -213,9 +205,7 @@ function saveEventsFields(events){
 
 }
 
-//pastSearches.push(dataToStore)
 
-//localStorage.setItem("Past Searches",JSON.stringify(pastSearches) );
 
 
 searchButton.addEventListener("click", function (event) {

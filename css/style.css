@@ -80,6 +80,9 @@ margin-left: 100px;
 }
 
 
+.event-Place{
+    font-weight: bolder;
+}
 .eventTicket{
     background-image: url("../assets/ticket.jpg");
     background-size: cover;
@@ -90,7 +93,9 @@ margin-left: 100px;
     text-decoration: underline;
     color: rgb(250, 117, 8)
 }
-
+.playBtn{
+    max-width: 20px;
+}
 
   
 
