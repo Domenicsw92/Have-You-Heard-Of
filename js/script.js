@@ -35,19 +35,19 @@ $.ajax(settings).done(function (response) {
   var artistcardText = $("<h4>").text(response.artists.hits[0].artist.name).addClass("Artist-Title")
   var topTracks = $("<h5>").text("Top 5 Tracks").addClass("event-Date")
   var artistcardTrack = $("<p>").text("1: "+response.tracks.hits[0].track.title).addClass("Artist-track")
-  var artistcardMusic = $("<a></a>").attr("href",response.tracks.hits[0].track.hub.actions[1].uri ).text("hear it now",)
+  var artistcardMusic = $("<a></a>").attr("href",response.tracks.hits[0].track.hub.actions[1].uri ).text("hear it now",).addClass("hearItNow")
 
   var artistcard2Track = $("<p>").text("2: "+response.tracks.hits[1].track.title).addClass("Artist-track")
-  var artistcard2Music = $("<a></a>").attr("href",response.tracks.hits[1].track.hub.actions[1].uri ).text("hear it now",)
+  var artistcard2Music = $("<a></a>").attr("href",response.tracks.hits[1].track.hub.actions[1].uri ).text("hear it now",).addClass("hearItNow")
 
   var artistcard3Track = $("<p>").text("3: "+response.tracks.hits[2].track.title).addClass("Artist-track")
-  var artistcard3Music = $("<a></a>").attr("href",response.tracks.hits[2].track.hub.actions[1].uri ).text("hear it now",)
+  var artistcard3Music = $("<a></a>").attr("href",response.tracks.hits[2].track.hub.actions[1].uri ).text("hear it now",).addClass("hearItNow")
 
   var artistcard4Track = $("<p>").text("4: "+response.tracks.hits[3].track.title).addClass("Artist-track")
-  var artistcard4Music = $("<a></a>").attr("href",response.tracks.hits[3].track.hub.actions[1].uri ).text("hear it now",)
+  var artistcard4Music = $("<a></a>").attr("href",response.tracks.hits[3].track.hub.actions[1].uri ).text("hear it now",).addClass("hearItNow")
 
   var artistcard5Track = $("<p>").text("5: "+response.tracks.hits[4].track.title).addClass("Artist-track")
-  var artistcard5Music = $("<a></a>").attr("href",response.tracks.hits[4].track.hub.actions[1].uri ).text("hear it now",)
+  var artistcard5Music = $("<a></a>").attr("href",response.tracks.hits[4].track.hub.actions[1].uri ).text("hear it now",).addClass("hearItNow")
   
   
   artistcardText.append(topTracks, artistcardTrack,artistcardMusic, artistcard2Track,artistcard2Music, artistcard3Track,artistcard3Music, artistcard4Track,artistcard4Music ,artistcard5Track,artistcard5Music)
@@ -77,7 +77,7 @@ function getEvents(search) {
     dataType: "json",
     success: function ({ _embedded }) {
       // getEvents.json = json;
-     // console.log(_embedded);
+      console.log("events here" , _embedded);
       //append here//
     
       var { events } = _embedded
@@ -85,14 +85,14 @@ function getEvents(search) {
      // console.log("these are the events", events[0])
       for (i = 0; i < events.length; i++) {
         events[i];
-        //console.log(events[i].name)
+       // console.log(events[i].name)
 
         var cardBody = $("<div>").addClass("eventBody")
         var cardText = $("<h4>").text(events[i].name).addClass("event-Date")
-        var eventDate = $("<p>").text(events[i].dates.initialStartDate.localDate).addClass("event-Date")
+        var eventDate = $("<p>").text(moment(events[i].dates.start.localDate).format("MMM D, YYYY")).addClass("event-Date")
         //var eventPlace = $("<p>").text(events[i]._embedded.venues.city.name).addClass("event-Date")
         // var eventLink = events[i].url
-        var eventBtn = $("<a></a>").attr("href", events[i].url).text("Get Tickets",)
+        var eventBtn = $("<a></a>").attr("href", events[i].url).text("Get Tickets",).addClass("eventTicket")
         //.click(function () {  $(`[href="${eventLink}"]`).click()  } ).text("Get Tickets",).addClass("event-Date")
 
         cardText.append(eventDate, eventBtn)
@@ -148,11 +148,11 @@ function getLyrics(searchInput) {
 
   $.ajax({
     type: "GET",
-    url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=jsonp&callback=callback&track_id="+searchInput+"&apikey=a0f0211d8f59c47b524f3dbf79fec662",
+    url: "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_artist="+searchInput+"&apikey="+musixMatchAPIKey,
     headers: {"Access-Control-Allow-Origin":"*"},
     dataType: 'jsonp',
     success: function (data) {
-      console.log(data);
+      console.log("lyrics",data);
     },
   //   error: function(xhr, status, err) {
   //     console.log(err);
@@ -200,7 +200,7 @@ function saveEventsFields(events){
   }
   var savedDates = []
   for (i = 0; i < events.length; i++) {
-    var eventDate = (events[i].dates.initialStartDate.localDate ) 
+    var eventDate = (events[i].dates.start.localDate ) 
     savedDates.push(eventDate)
   }
   var eventData = {"Events": saveEvents,
