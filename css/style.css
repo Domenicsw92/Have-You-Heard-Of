@@ -19,6 +19,7 @@ body {
 #search {
     font-size: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:black;
 }
 
 /* change font to black so it can be seen */
@@ -54,4 +55,15 @@ body {
 .video-section {
     border: dotted black 1px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.eventTicket{
+    background-image: url("../assets/ticket.jpg");
+    background-size: cover;
+    text-decoration: underline;
+    color: rgb(250, 117, 8)}
+
+.hearItNow{
+    text-decoration: underline;
+    color: rgb(250, 117, 8)
 }
