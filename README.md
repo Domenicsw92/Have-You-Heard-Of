@@ -3,7 +3,7 @@
 Our Team:
 * Domenic Wilhelm
 * Nick clymer
-* Allison Armstrong
+* Alison Armstrong
 * Andreas Irta
 
 # What is this?
