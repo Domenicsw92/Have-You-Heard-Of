@@ -38,6 +38,7 @@ body {
 
 .row {
     margin-left: 100px;
+    max-width: 2000px;
 }
 
 .top-songs {
