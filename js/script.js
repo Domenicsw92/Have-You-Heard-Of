@@ -56,7 +56,7 @@ $.ajax(settings).done(function (response) {
   
   $(".artist").append(artistcardBody)
 
-  $('.hearItNow').prepend('<img id="play" class="playBtn" src="../assets/play-button_25b6-fe0f.png" />')
+  $('.hearItNow').prepend('<img id="play" class="playBtn" src="./assets/play-button_25b6-fe0f.png" />')
 
 });
 }
